@@ -21,22 +21,22 @@ public class PostController {
     }
 
     @PostMapping(value = "/posts")
-    public ResponseEntity<Post> savePost() {
-        return new ResponseEntity<>(postService.savePost(), HttpStatus.CREATED);
+    public ResponseEntity<Post> savePost(@RequestBody Post nPost) {
+        return new ResponseEntity<>(postService.savePost(nPost), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable("id") String id) {
-        return new ResponseEntity<>(postService.getPostById(), HttpStatus.OK);
+    public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) throws Exception {
+        return new ResponseEntity<>(postService.getPostById(id).orElseThrow(() -> new Exception("post not found")), HttpStatus.OK);
     }
 
     @PutMapping(value = "/posts/{id}")
-    public ResponseEntity<Post> updatePostyById(@PathVariable("id") String id) {
-        return new ResponseEntity<>(postService.updatePost(), HttpStatus.OK);
+    public ResponseEntity<Post> updatePostyById(@RequestBody Post post, @PathVariable("id") Long id) {
+        return new ResponseEntity<>(postService.updatePost(id, post), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/posts/{id}")
-    public void deletePostById(@PathVariable("id") String id) {
-        postService.deletePostById();
+    public void deletePostById(@PathVariable("id") Long id) {
+        postService.deletePostById(id);
     }
 }

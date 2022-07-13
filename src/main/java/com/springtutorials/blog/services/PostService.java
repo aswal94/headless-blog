@@ -2,18 +2,20 @@ package com.springtutorials.blog.services;
 
 import com.springtutorials.blog.model.Post;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 public interface PostService {
 
     List<Post> getAllPosts();
 
-    Post getPostById();
+    Optional<Post> getPostById(Long id);
 
-    Post savePost();
+    Post savePost(Post post);
 
-    Post updatePost();
+    Post updatePost(Long id, Post post);
 
-    void deletePostById();
+    void deletePostById(Long id);
 
 }

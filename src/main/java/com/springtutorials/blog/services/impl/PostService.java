@@ -1,32 +1,49 @@
 package com.springtutorials.blog.services.impl;
 
 import com.springtutorials.blog.model.Post;
+import com.springtutorials.blog.repositories.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class PostService implements com.springtutorials.blog.services.PostService {
+
+    @Autowired
+    PostRepository postRepository;
+
     @Override
     public List<Post> getAllPosts() {
-        return null;
+        return postRepository.findAll();
     }
 
     @Override
-    public Post getPostById() {
-        return null;
+    public Optional<Post> getPostById(Long id) {
+        return postRepository.findById(id);
     }
 
     @Override
-    public Post savePost() {
-        return null;
+    public Post savePost(Post post) {
+        return postRepository.save(post);
     }
 
     @Override
-    public Post updatePost() {
-        return null;
+    public Post updatePost(Long id, Post newPost) {
+        return postRepository.findById(id)
+                .map(post -> {
+                    post.setTitle(newPost.getTitle());
+                    return postRepository.save(post);
+                })
+                .orElseGet(() -> {
+                    newPost.setId(id);
+                    return postRepository.save(newPost);
+                });
     }
 
     @Override
-    public void deletePostById() {
-
+    public void deletePostById(Long id) {
+        postRepository.deleteById(id);
     }
 }

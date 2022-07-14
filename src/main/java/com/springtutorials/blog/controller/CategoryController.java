@@ -15,27 +15,27 @@ public class CategoryController {
     @Autowired
     ICategoryService categoryService;
 
-    @GetMapping(value = "/category")
-    public ResponseEntity<List<Category>> getAllCategorys() {
+    @GetMapping(value = "/categories")
+    public ResponseEntity<List<Category>> getAllCategories() {
         return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/category")
+    @PostMapping(value = "/categories")
     public ResponseEntity<Category> saveCategory(@RequestBody Category nCategory) {
         return new ResponseEntity<>(categoryService.saveCategory(nCategory), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/category/{id}")
+    @GetMapping(value = "/categories/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable("id") Long id) throws Exception {
         return new ResponseEntity<>(categoryService.getCategoryById(id).orElseThrow(() -> new Exception("post not found")), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/category/{id}")
-    public ResponseEntity<Category> updateCategoryyById(@RequestBody Category post, @PathVariable("id") Long id) {
+    @PutMapping(value = "/categories/{id}")
+    public ResponseEntity<Category> updateCategoryById(@RequestBody Category post, @PathVariable("id") Long id) {
         return new ResponseEntity<>(categoryService.updateCategory(id, post), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/category/{id}")
+    @DeleteMapping(value = "/categories/{id}")
     public void deleteCategoryById(@PathVariable("id") Long id) {
         categoryService.deleteCategoryById(id);
     }

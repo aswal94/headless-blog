@@ -1,49 +1,50 @@
 package com.springtutorials.blog.services.impl;
 
-import com.springtutorials.blog.model.Category;
-import com.springtutorials.blog.repositories.CategoryRepository;
+import com.springtutorials.blog.model.Comment;
+import com.springtutorials.blog.repositories.CommentRepository;
 import com.springtutorials.blog.services.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CommentService implements ICommentService {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    CommentRepository commentRepository;
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<Comment> getAllComments() {
+        return commentRepository.findAll();
     }
 
     @Override
-    public Optional<Category> getCategoryById(Long id) {
-        return categoryRepository.findById(id);
+    public Optional<Comment> getCommentById(Long id) {
+        return commentRepository.findById(id);
     }
 
     @Override
-    public Category saveCategory(Category category) {
-        return categoryRepository.save(category);
+    public Comment saveComment(Comment comment) {
+        return commentRepository.save(comment);
     }
 
     @Override
-    public Category updateCategory(Long id, Category newCategory) {
-        return categoryRepository.findById(id)
-                .map(category -> {
-                    category.setName(newCategory.getName());
-                    category.setSlug(newCategory.getName());
-                    return categoryRepository.save(category);
+    public Comment updateComment(Long id, Comment newComment) {
+        return commentRepository.findById(id)
+                .map(comment -> {
+                    comment.setBody(newComment.getBody());
+                    return commentRepository.save(comment);
                 })
                 .orElseGet(() -> {
-                    newCategory.setId(id);
-                    return categoryRepository.save(newCategory);
+                    newComment.setId(id);
+                    return commentRepository.save(newComment);
                 });
     }
 
     @Override
-    public void deleteCategoryById(Long id) {
-        categoryRepository.deleteById(id);
+    public void deleteCommentById(Long id) {
+        commentRepository.deleteById(id);
     }
 }

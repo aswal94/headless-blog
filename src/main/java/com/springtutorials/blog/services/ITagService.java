@@ -1,18 +1,18 @@
 package com.springtutorials.blog.services;
 
-import com.springtutorials.blog.model.Category;
+import com.springtutorials.blog.model.Tag;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ITagService {
-    List<Category> getAllCategories();
+    List<Tag> getAllTags();
 
-    Optional<Category> getCategoryById(Long id);
+    Optional<Tag> getTagById(Long id);
 
-    Category saveCategory(Category post);
+    Tag saveTag(Tag post);
 
-    Category updateCategory(Long id, Category post);
+    Tag updateTag(Long id, Tag post);
 
-    void deleteCategoryById(Long id);
+    void deleteTagById(Long id);
 }

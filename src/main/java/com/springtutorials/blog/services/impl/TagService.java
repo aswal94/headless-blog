@@ -1,49 +1,50 @@
 package com.springtutorials.blog.services.impl;
 
-import com.springtutorials.blog.model.Category;
-import com.springtutorials.blog.repositories.CategoryRepository;
+import com.springtutorials.blog.model.Tag;
+import com.springtutorials.blog.repositories.TagRepository;
 import com.springtutorials.blog.services.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TagService implements ITagService {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    TagRepository tagRepository;
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<Tag> getAllTags() {
+        return tagRepository.findAll();
     }
 
     @Override
-    public Optional<Category> getCategoryById(Long id) {
-        return categoryRepository.findById(id);
+    public Optional<Tag> getTagById(Long id) {
+        return tagRepository.findById(id);
     }
 
     @Override
-    public Category saveCategory(Category category) {
-        return categoryRepository.save(category);
+    public Tag saveTag(Tag tag) {
+        return tagRepository.save(tag);
     }
 
     @Override
-    public Category updateCategory(Long id, Category newCategory) {
-        return categoryRepository.findById(id)
-                .map(category -> {
-                    category.setName(newCategory.getName());
-                    category.setSlug(newCategory.getName());
-                    return categoryRepository.save(category);
+    public Tag updateTag(Long id, Tag newTag) {
+        return tagRepository.findById(id)
+                .map(tag -> {
+                    tag.setName(newTag.getName());
+                    return tagRepository.save(tag);
                 })
                 .orElseGet(() -> {
-                    newCategory.setId(id);
-                    return categoryRepository.save(newCategory);
+                    newTag.setId(id);
+                    return tagRepository.save(newTag);
                 });
     }
 
     @Override
-    public void deleteCategoryById(Long id) {
-        categoryRepository.deleteById(id);
+    public void deleteTagById(Long id) {
+        tagRepository.deleteById(id);
     }
 }

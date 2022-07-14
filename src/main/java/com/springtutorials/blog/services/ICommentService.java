@@ -1,18 +1,18 @@
 package com.springtutorials.blog.services;
 
-import com.springtutorials.blog.model.Category;
+import com.springtutorials.blog.model.Comment;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ICommentService {
-    List<Category> getAllCategories();
+    List<Comment> getAllComments();
 
-    Optional<Category> getCategoryById(Long id);
+    Optional<Comment> getCommentById(Long id);
 
-    Category saveCategory(Category post);
+    Comment saveComment(Comment post);
 
-    Category updateCategory(Long id, Category post);
+    Comment updateComment(Long id, Comment post);
 
-    void deleteCategoryById(Long id);
+    void deleteCommentById(Long id);
 }

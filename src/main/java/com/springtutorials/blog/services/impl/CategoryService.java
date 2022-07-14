@@ -2,12 +2,13 @@ package com.springtutorials.blog.services.impl;
 
 import com.springtutorials.blog.model.Category;
 import com.springtutorials.blog.repositories.CategoryRepository;
+import com.springtutorials.blog.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CategoryService implements com.springtutorials.blog.services.CategoryService {
+public class CategoryService implements ICategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;

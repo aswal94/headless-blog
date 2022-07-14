@@ -1,7 +1,7 @@
 package com.springtutorials.blog.controller;
 
 import com.springtutorials.blog.model.Post;
-import com.springtutorials.blog.services.PostService;
+import com.springtutorials.blog.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    PostService postService;
+    IPostService postService;
 
     @GetMapping(value = "/posts")
     public ResponseEntity<List<Post>> getAllPosts() {

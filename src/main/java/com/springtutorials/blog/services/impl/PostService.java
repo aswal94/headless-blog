@@ -2,6 +2,7 @@ package com.springtutorials.blog.services.impl;
 
 import com.springtutorials.blog.model.Post;
 import com.springtutorials.blog.repositories.PostRepository;
+import com.springtutorials.blog.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PostService implements com.springtutorials.blog.services.PostService {
+public class PostService implements IPostService {
 
     @Autowired
     PostRepository postRepository;
@@ -26,6 +27,7 @@ public class PostService implements com.springtutorials.blog.services.PostServic
 
     @Override
     public Post savePost(Post post) {
+        post.setSlug(post.getTitle());
         return postRepository.save(post);
     }
 

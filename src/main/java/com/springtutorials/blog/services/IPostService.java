@@ -5,7 +5,7 @@ import com.springtutorials.blog.model.Post;
 import java.util.List;
 import java.util.Optional;
 
-public interface PostService {
+public interface IPostService {
 
     List<Post> getAllPosts();
 

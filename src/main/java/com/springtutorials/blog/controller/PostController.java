@@ -16,7 +16,7 @@ public class PostController {
     @Autowired
     IPostService postService;
 
-    @GetMapping(value = "/posts")
+    @GetMapping(value = "/api/posts")
     public ResponseEntity<List<Post>> getAllPosts() {
         return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
     }
